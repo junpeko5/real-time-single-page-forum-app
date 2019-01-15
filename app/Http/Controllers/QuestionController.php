@@ -16,7 +16,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        return QuestionResource::z(Question::latest()->get());
+        return QuestionResource::collection(Question::latest()->get());
     }
 
     /**
@@ -27,7 +27,6 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-//        auth()->user()->question()->create($request->all());
         Question::create($request->all());
         return response('Created', Response::HTTP_CREATED);
     }
@@ -50,7 +49,8 @@ class QuestionController extends Controller
      */
     public function update(Request $request, Question $question)
     {
-        //
+        $question->update($request->all());
+        return response('Update', Response::HTTP_ACCEPTED);
     }
 
     /**
