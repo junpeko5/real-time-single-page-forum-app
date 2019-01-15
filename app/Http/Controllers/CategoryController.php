@@ -5,15 +5,16 @@ namespace App\Http\Controllers;
 use App\Model\Category;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\Http\Resources\CategoryResource;
 
 class CategoryController extends Controller
 {
     /**
-     * @return mixed
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index()
     {
-        return category::latest()->get();
+        return CategoryResource::collection(category::latest()->get());
     }
 
     /**
@@ -29,13 +30,14 @@ class CategoryController extends Controller
         return response('created', Response::HTTP_CREATED);
     }
 
+
     /**
      * @param Category $category
-     * @return Category
+     * @return CategoryResource
      */
     public function show(Category $category)
     {
-        return $category;
+        return new CategoryResource($category);
     }
 
     /**
