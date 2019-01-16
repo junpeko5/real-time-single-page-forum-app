@@ -10,12 +10,22 @@ use App\Http\Resources\CategoryResource;
 class CategoryController extends Controller
 {
     /**
+     * CategoryController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('JWT', ['except' => ['index', 'show']]);
+    }
+
+
+    /**
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index()
     {
         return CategoryResource::collection(category::latest()->get());
     }
+
 
     /**
      * @param Request $request

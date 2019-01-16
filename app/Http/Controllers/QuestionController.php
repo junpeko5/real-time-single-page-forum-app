@@ -10,26 +10,32 @@ use Illuminate\Http\Response;
 class QuestionController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * QuestionController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('JWT', ['except' => ['index', 'show']]);
+    }
+
+    /**
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index()
     {
         return QuestionResource::collection(Question::latest()->get());
     }
 
+
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|Response
      */
     public function store(Request $request)
     {
         Question::create($request->all());
         return response('Created', Response::HTTP_CREATED);
     }
+
 
     /**
      * @param Question $question
@@ -40,18 +46,18 @@ class QuestionController extends Controller
         return new QuestionResource($question);
     }
 
+
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Model\Question  $question
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Question $question
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|Response
      */
     public function update(Request $request, Question $question)
     {
         $question->update($request->all());
         return response('Update', Response::HTTP_ACCEPTED);
     }
+
 
     /**
      * @param Question $question

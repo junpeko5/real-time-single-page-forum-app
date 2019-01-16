@@ -11,6 +11,13 @@ use App\Http\Resources\ReplyResource;
 class ReplyController extends Controller
 {
     /**
+     * ReplyController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('JWT', ['except' => ['index', 'show']]);
+    }
+    /**
      * @param Question $question
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
@@ -31,10 +38,11 @@ class ReplyController extends Controller
         return response(['reply' => new ReplyResource($reply)] ,Response::HTTP_CREATED);
     }
 
+
     /**
      * @param Question $question
      * @param Reply $reply
-     * @return Reply
+     * @return ReplyResource
      */
     public function show(Question $question, Reply $reply)
     {
