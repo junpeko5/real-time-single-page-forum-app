@@ -11,7 +11,7 @@
             ></v-text-field>
             <v-text-field
                 v-model="form.password"
-                label="Name"
+                label="Password"
                 type="password"
                 required
             ></v-text-field>
@@ -37,9 +37,7 @@
         },
         methods: {
             login() {
-                axios.post('/api/auth/login', this.form)
-                    .then(res => console.log(res.data))
-                    .catch(error =>console.log(res.error))
+                User.login(this.form)
             }
         }
     }
