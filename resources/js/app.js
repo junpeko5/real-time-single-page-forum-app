@@ -12,7 +12,7 @@ window.Vue = require('vue');
 import Vue from 'vue'
 import Vuetify from 'vuetify'
 import AppHome from './components/AppHome'
-import router from './Router/router'
+import router from './Router/router.js'
 
 Vue.use(Vuetify)
 
