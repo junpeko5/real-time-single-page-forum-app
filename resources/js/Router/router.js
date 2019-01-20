@@ -3,7 +3,9 @@ import VueRouter from 'vue-router'
 import Login from '../components/login/Login'
 import Logout from '../components/login/Logout'
 import Signup from '../components/login/Signup'
-import Fourm from '../components/forum/Fourm'
+import Forum from '../components/forum/Fourm'
+import Read from '../components/forum/Read'
+import Create from '../components/forum/Create'
 
 Vue.use(VueRouter)
 
@@ -23,7 +25,16 @@ const routes = [
     {
         path: '/forum',
         name: 'forum',
-        component: Fourm
+        component: Forum
+    },
+    {
+        path: '/question/:slug',
+        name: 'read',
+        component: Read
+    },
+    {
+        path: '/ask',
+        component: Create
     }
 ]
 
