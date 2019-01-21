@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\QuestionResource;
+
 use App\Model\Question;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Http\Resources\QuestionResource;
 
 class QuestionController extends Controller
 {

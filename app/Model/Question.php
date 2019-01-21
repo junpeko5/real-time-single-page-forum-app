@@ -22,6 +22,8 @@ class Question extends Model
 
     protected $fillable = ['title', 'slug', 'body', 'user_id', 'category_id'];
 
+    protected $with = ['replies'];
+
     public function user()
     {
         return $this->belongsTo(User::class);
