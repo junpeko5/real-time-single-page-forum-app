@@ -4,7 +4,7 @@
             <v-card-title>
                 <div>
                     <div class="headline">
-                        {{ data.title }}
+                        {{data.title}}
                     </div>
                     <span class="grey--text">
                         {{data.user}} said {{data.created_at}}
