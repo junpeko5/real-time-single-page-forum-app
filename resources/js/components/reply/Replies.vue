@@ -48,7 +48,8 @@
                                 this.content.splice(index, 1)
                             }
                         }
-                    })
+                    }
+                )
             }
         }
     }
